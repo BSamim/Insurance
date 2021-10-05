@@ -40,8 +40,8 @@ require_once("sidebar.php");
 
                     <div class="col-xl-6 col-md-6 col-sm-6">
                       <div class="utf-submit-field">
-                        <h5>Type of Business</h5>
-                        <input type="text" name="business_type" required class="utf-with-border" placeholder="IE:Oil and Gass, Habitational, Construction">
+                        <h5>Business Name</h5>
+                        <input type="text" name="business_name" required class="utf-with-border" placeholder="Business Name">
                       </div>
                     </div>
                     <div class="col-xl-6 col-md-6 col-sm-6">
@@ -58,10 +58,11 @@ require_once("sidebar.php");
                     </div>
                     <div class="col-xl-6 col-md-6 col-sm-6">
                       <div class="utf-submit-field">
-                        <h5>Need by Date</h5>
-                        <input type="date" name="required_date" required class="utf-with-border" placeholder="Need by Date">
+                        <h5>Type of Business</h5>
+                        <input type="text" name="business_type" required class="utf-with-border" placeholder="IE:Oil and Gass, Habitational, Construction">
                       </div>
                     </div>
+                    
                     <div class="col-xl-6 col-md-6 col-sm-6">
                       <div class="utf-submit-field">
                         <h5>City </h5>
@@ -108,7 +109,7 @@ require_once("sidebar.php");
                     <div class="col-xl-12 col-md-12 col-sm-12">
                       <div class="utf-submit-field">
                         <h5>Key Underwriting Information</h5>
-                        <textarea cols="40" name="description" rows="2" class="utf-with-border" placeholder=""></textarea>
+                        <textarea cols="40" name="description" rows="2" class="utf-with-border" placeholder="Enter Details"></textarea>
                       </div>
                     </div>
                   </div>
