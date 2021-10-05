@@ -43,9 +43,11 @@ $results = db::getRecords($queryToGetActiveQuotes);
                           <h3 class="utf-job-listing-title"><a href="#"><?php echo $result['business_name']; ?></a></h3>
                           <div class="utf-job-listing-footer">
                             <ul>
+                              <li><i class="icon-material-outline-date-range"></i><?php echo $result['insurance_type']; ?></li>
                               <li><i class="icon-material-outline-date-range"></i><?php echo $result['time_stamp']; ?></li>
                               <li><i class="icon-feather-briefcase"></i><?php echo $result['business_type']; ?></li>
                               <li><i class="icon-material-outline-location-on"></i><?php echo $result['city']; ?>, <?php echo $result['state']; ?></li>
+                              <li><i class="icon-material-outline-monetization-on"></i><?php echo $result['gross_sales']; ?></li>
                             </ul>
                             <a href="">Document.pdf</a>
                             <p><?php echo $result['description']; ?></p>
