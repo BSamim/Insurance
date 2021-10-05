@@ -43,13 +43,13 @@ $results = db::getRecords($queryToGetActiveQuotes);
                           <h3 class="utf-job-listing-title"><a href="#"><?php echo $result['business_name']; ?></a></h3>
                           <div class="utf-job-listing-footer">
                             <ul>
-                              <li><i class="icon-material-outline-date-range"></i><?php echo $result['insurance_type']; ?></li>
+                              <li><i class="icon-line-awesome-tasks"></i><?php echo $result['insurance_type']; ?></li>
                               <li><i class="icon-material-outline-date-range"></i><?php echo $result['time_stamp']; ?></li>
                               <li><i class="icon-feather-briefcase"></i><?php echo $result['business_type']; ?></li>
                               <li><i class="icon-material-outline-location-on"></i><?php echo $result['city']; ?>, <?php echo $result['state']; ?></li>
-                              <li><i class="icon-material-outline-monetization-on"></i><?php echo $result['gross_sales']; ?></li>
+                              <li><i class="icon-line-awesome-dollar"></i><?php echo $result['gross_sales']; ?></li>
                             </ul>
-                            <a href="">Document.pdf</a>
+                            <a href="files/<?php echo $result['file']; ?>" download>Download Attachment</a>
                             <p><?php echo $result['description']; ?></p>
                           </div>
                         </div>
@@ -57,7 +57,7 @@ $results = db::getRecords($queryToGetActiveQuotes);
                     </div>
                     <ul class="dashboard-task-info">
                       <li><a href="chat.php"><span>Chat</span></a></li>
-                      <li><span><?php echo $result['effective_date']; ?></span></li>
+                      <li><span>Effected Date: <?php echo $result['effective_date']; ?></span></li>
                     </ul>
                     <div class="utf-buttons-to-right">
                       <a href="#small-dialog" class="popup-with-zoom-anim button green ripple-effect ico" title="Edit Bids" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
