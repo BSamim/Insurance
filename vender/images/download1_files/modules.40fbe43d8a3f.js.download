@@ -1,0 +1,1 @@
+(function(){'use strict';window.DeviceHelpers={isIos:function(){return /iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;},isSafari:function(){return!!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);},isAndroid:function(){return navigator.userAgent.toLowerCase().indexOf('android')>1;},};})();
