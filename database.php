@@ -10,7 +10,7 @@ class db{
 		if(in_array($_SERVER['HTTP_HOST'], $servers)){ //for localhost
 			$dbuser = 'root';
 			$dbpwd = '';
-			$dbname = 'insurence';
+			$dbname = 'insurance';
 			$dbserver = 'localhost';
 		}else{ //for live server
               $dbuser = 'ateckwgz_insurance_admin';

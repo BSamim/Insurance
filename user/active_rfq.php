@@ -46,7 +46,7 @@ require_once("sidebar.php");
                 </div>
                 <ul class="dashboard-task-info">
                   <li><a href="chat.php"><span>Chat</span></a></li>
-                  <li><span>Efected Date</span></li>
+                  <li><span>Effected Date</span></li>
                 </ul>
                 <div class="utf-buttons-to-right">
                   <a href="#small-dialog" class="popup-with-zoom-anim button green ripple-effect ico" title="Edit Bids" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
