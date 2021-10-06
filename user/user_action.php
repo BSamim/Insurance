@@ -26,3 +26,23 @@ if (isset($_POST['get_quote'])) {
     db::query($sql);
     echo "<script>location='active_rfq.php'</script>";
 }
+
+//Delete an active Quote
+if (isset($_GET['del_active_quote'])) {
+    $id = $_GET['del_active_quote'];
+
+    $del_query = "DELETE FROM quotes WHERE id='$id'";
+    $res = db::query($del_query);
+
+    echo "<script>location='active_rfq.php?status=1'</script>";
+}
+
+//Delete an inactive Quote
+if (isset($_GET['del_inactive_quote'])) {
+    $id = $_GET['del_inactive_quote'];
+
+    $del_query = "DELETE FROM quotes WHERE id='$id'";
+    $res = db::query($del_query);
+
+    echo "<script>location='inactive_rfq.php?status=1'</script>";
+}

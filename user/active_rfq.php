@@ -1,8 +1,6 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
-require_once("../database.php");
-$date = date("Y-m-d");
 //Read Data
 $queryToGetActiveQuotes = "SELECT * FROM quotes WHERE effective_date >= '$date'";
 $results = db::getRecords($queryToGetActiveQuotes);
@@ -57,11 +55,13 @@ $results = db::getRecords($queryToGetActiveQuotes);
                     </div>
                     <ul class="dashboard-task-info">
                       <li><a href="chat.php"><span>Chat</span></a></li>
-                      <li><span>Effected Date: <?php echo $result['effective_date']; ?></span></li>
+                    </ul>
+                    <ul class="dashboard-task-info">
+                      <li><span ><b>Effective Date: </b><?php echo $result['effective_date']; ?></span></li>
                     </ul>
                     <div class="utf-buttons-to-right">
                       <a href="#small-dialog" class="popup-with-zoom-anim button green ripple-effect ico" title="Edit Bids" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
-                      <a href="#" class="button red ripple-effect ico" title="Remove Bids" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+                      <a href="user_action.php?del_active_quote=<?php echo $result['id']; ?>" class="button red ripple-effect ico" title="Remove Bids" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
                     </div>
                   </li>
               <?php
