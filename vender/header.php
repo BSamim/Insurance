@@ -1,3 +1,7 @@
+<?php
+  require_once("../database.php");
+  $date = date("Y-m-d");
+?>
 <!DOCTYPE html>
 <html lang="en">
 

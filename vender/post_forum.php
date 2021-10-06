@@ -1,6 +1,9 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
+//Read Data
+$queryToGetActiveQuotes = "SELECT * FROM quotes WHERE effective_date >= '$date'";
+$results = db::getRecords($queryToGetActiveQuotes);
 ?>
 <style>
 .utf-buttons-to-right {
@@ -68,7 +71,7 @@ require_once("sidebar.php");
                 </ul>
               <div class="utf-buttons-to-right"> 
                 <!-- <a href="#small-dialog" class="popup-with-zoom-anim button green ripple-effect ico" title="Edit Bids" data-tippy-placement="top"><i class="icon-feather-edit"></i></a> -->
-                <a href="chat.php" class="button red ripple-effect ico" title="Interested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite-border" onclick="toggle_fv(this.id)"></i></a>
+                <a href="#" class="button red ripple-effect ico" title="Interested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite-border" onclick="toggle_fv(this.id)"></i></a>
               </div>
               
               
