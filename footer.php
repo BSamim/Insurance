@@ -92,7 +92,7 @@
            <h3>Create your Account!</h3>
            <!-- <span>Don't Have an Account? <a href="#" class="register-tab">Sign Up!</a></span>  -->
          </div>
-         <form method="post" id="utf-register-account-form">
+         <form action="action.php" method="post" id="utf-register-account-form">
            <div class="utf-no-border">
              <input type="text" class="utf-with-border" name="name" id="name" placeholder="User Name" required />
            </div>
@@ -113,11 +113,11 @@
              <label style="margin-left: 20px;padding-left: 27px;" name="label" for="one_step"><span class="checkbox-icon"></span><a href="vender/index.php">Vender</a></label>
            </div>
            <div class="checkbox margin-top-0">
-             <input type="checkbox" id="two-step0">
+             <input type="checkbox" id="two-step0" required>
              <label for="two-step0"><span class="checkbox-icon"></span> I Have Read and Agree to the <a href="#">Terms &amp; Conditions</a></label>
            </div>
+           <button class="margin-top-10 button full-width utf-button-sliding-icon ripple-effect" type="submit" name="add_acc" form="utf-register-account-form">Register <i class="icon-feather-chevron-right"></i></button>
          </form>
-         <button class="margin-top-10 button full-width utf-button-sliding-icon ripple-effect" type="submit" form="utf-register-account-form">Register <i class="icon-feather-chevron-right"></i></button>
        </div>
      </div>
    </div>

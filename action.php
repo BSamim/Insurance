@@ -524,4 +524,14 @@ if (isset($_POST['submit'])) {
     echo "<script>location='contact.php?status=1'</script>";
 }
 
+// add_user
+if(isset($_POST['add_acc']))
+{
+    $username=$_POST['name'];
+    $email=$_POST['emailaddress-register'];
+    $sql="INSERT INTO about (heading, description) VALUES ('$heading', '$description')";
+    db::query($sql);
+    echo "<script>location='about.php'</script>";
+}
+
 ?>
