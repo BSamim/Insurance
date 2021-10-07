@@ -1,9 +1,9 @@
 <?php
 session_start();
-$admin = $_SESSION['email'];
+// $admin = $_SESSION['email'];
 require_once("database.php");
 $db = db::open();
-$datee = date("d-m-Y");
+$date = date("Y-m-d");
                 // all insertion code start
 if(isset($_POST['login']))
 {
@@ -84,7 +84,7 @@ if (isset($_POST['add_banner'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO insurence (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO insurence (heading,description,image) VALUES ('$heading','$description','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='insurense.php'</script>";
 }
@@ -140,7 +140,7 @@ if (isset($_POST['add_canadian'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO canadian (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO canadian (heading,description,image) VALUES ('$heading','$description','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='canadians.php'</script>";
 }
@@ -152,7 +152,7 @@ if (isset($_POST['update_canadian'])) {
     $description = $_POST['description'];
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE canadian SET heading='$heading', description='$description' WHERE id = '$id'";
+        $sql = "UPDATE canadian SET heading='$heading', description='$description' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -163,10 +163,10 @@ if (isset($_POST['update_canadian'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE canadian SET heading='$heading',description='$description',image='$final_file' WHERE id = '$id'";
+        $sql = "UPDATE canadian SET heading='$heading',description='$description',image='$final_file' WHERE id = '$id'";
     }
 
-    $res = db::query($query);
+    $res = db::query($sql);
 
     echo "<script>location='canadians.php?status=1'</script>";
 }
@@ -197,7 +197,7 @@ if (isset($_POST['add_insurance_quote'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO insurance_quote (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO insurance_quote (heading,description,image) VALUES ('$heading','$description','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='insurance_quote.php'</script>";
 }
@@ -252,7 +252,7 @@ if (isset($_POST['add_testemonail'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO testemonail (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO testemonail (heading,description,image) VALUES ('$heading','$description','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='testeminial.php'</script>";
 }
@@ -305,7 +305,7 @@ if (isset($_POST['add_brand'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO brand (`image`) VALUES ('$final_file')";
+    $sql = "INSERT INTO brand (image) VALUES ('$final_file')";
     db::insertRecord($sql);
     echo "<script>location='brand.php'</script>";
 }
@@ -357,7 +357,7 @@ if (isset($_POST['add_about'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO about (`heading`,`description`) VALUES ('$heading','$description')";
+    $sql = "INSERT INTO about (heading,description) VALUES ('$heading','$description')";
     db::insertRecord($sql);
     echo "<script>location='about.php'</script>";
 }
@@ -412,7 +412,7 @@ if (isset($_POST['add_post_quote'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO post_quote (`heading`,`description`) VALUES ('$heading','$description')";
+    $sql = "INSERT INTO post_quote (heading,description) VALUES ('$heading','$description')";
     db::insertRecord($sql);
     echo "<script>location='post_quote.php'</script>";
 }
@@ -467,7 +467,7 @@ if (isset($_POST['add_get_job'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO get_job (`heading`,`description`) VALUES ('$heading','$description')";
+    $sql = "INSERT INTO get_job (heading,description) VALUES ('$heading','$description')";
     db::insertRecord($sql);
     echo "<script>location='get_job.php'</script>";
 }
@@ -518,20 +518,9 @@ if (isset($_POST['submit'])) {
     $message = $_POST['message'];
 
 
-    $query = "INSERT INTO contact (`first_name`,`email`,`subject`,`last_name`,`message`) VALUES ('$first_name','$email','$subject','$last_name','$message')";
+    $query = "INSERT INTO contact (first_name,email,subject,last_name,message) VALUES ('$first_name','$email','$subject','$last_name','$message')";
     $res = db::insertRecord($query);
 
     echo "<script>location='contact.php?status=1'</script>";
 }
-
-// add_user
-if(isset($_POST['add_acc']))
-{
-    $username=$_POST['name'];
-    $email=$_POST['emailaddress-register'];
-    $sql="INSERT INTO about (heading, description) VALUES ('$heading', '$description')";
-    db::query($sql);
-    echo "<script>location='about.php'</script>";
-}
-
 ?>
