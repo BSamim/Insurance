@@ -1,6 +1,10 @@
 <?php
   session_start();
   require_once("../database.php");
+  $id=$_SESSION['id'];
+  if (!$id) {
+    header('location:../index.php');
+  }
   $date = date("Y-m-d");
 ?>
 <!DOCTYPE html>
@@ -68,7 +72,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="utf-right-side">
-            <div class="utf-header-widget-item"> <a href="#" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Logout</span></a> </div>
+            <div class="utf-header-widget-item"> <a href="vendor_action.php?vendor_logout" class="log-in-button"><i class="icon-feather-log-in"></i> <span>Logout</span></a> </div>
             
             <span class="mmenu-trigger">
               <button class="hamburger utf-hamburger-collapse-item" type="button"> <span class="utf-hamburger-box-item"> <span class="utf-hamburger-inner-item"></span> </span> </button>

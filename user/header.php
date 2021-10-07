@@ -1,5 +1,9 @@
 <?php
   session_start();
+  $id=$_SESSION['id'];
+  if (!$id) {
+    header('location:../index.php');
+  }
   require_once("../database.php");
   $date = date("Y-m-d");
 ?>
