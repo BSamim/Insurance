@@ -2,7 +2,7 @@
 require_once("header.php");
 require_once("sidebar.php");
 //Read Data
-$queryToGetActiveQuotes = "SELECT * FROM quotes WHERE effective_date >= '$date'";
+$queryToGetActiveQuotes = "SELECT * FROM quotes WHERE quote_status = 'active'";
 $results = db::getRecords($queryToGetActiveQuotes);
 ?>
 
@@ -60,8 +60,9 @@ $results = db::getRecords($queryToGetActiveQuotes);
                       <li><span ><b>Effective Date: </b><?php echo $result['effective_date']; ?></span></li>
                     </ul>
                     <div class="utf-buttons-to-right">
-                      <a href="#small-dialog" class="popup-with-zoom-anim button green ripple-effect ico" title="Edit Bids" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
-                      <a href="user_action.php?del_active_quote=<?php echo $result['id']; ?>" class="button red ripple-effect ico" title="Remove Bids" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+                      <a href="#small-dialog" class="popup-with-zoom-anim button green ripple-effect ico" title="Edit Quote" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
+                      <a href="user_action.php?del_active_quote=<?php echo $result['id']; ?>" class="button red ripple-effect ico" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+                      <a href="user_action.php?deactivate_quote=<?php echo $result['id']; ?>" class="button red ripple-effect ico" title="Deactivate" data-tippy-placement="top"><i class="icon-material-outline-highlight-off"></i></a>
                     </div>
                   </li>
               <?php

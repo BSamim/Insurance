@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require_once("../database.php");
   $date = date("Y-m-d");
 ?>
@@ -68,23 +69,7 @@
           </div>
           <div class="utf-right-side">
             <div class="utf-header-widget-item"> <a href="#" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Logout</span></a> </div>
-            <div class="utf-header-widget-item">
-              <div class="utf-header-notifications user-menu">
-                <div class="utf-header-notifications-trigger user-profile-title">
-                  <a href="#">
-                    <div class="user-avatar status-online"><img src="images/user_small_1.jpg" alt=""> </div>
-                    <div class="user-name" style="  font-weight: 900 !important;letter-spacing: 1px;">Hi, John!</div>
-                  </a>
-                </div>
-                <!-- <div class="utf-header-notifications-dropdown-block">
-                  <ul class="utf-user-menu-dropdown-nav">
-                    <li><a href="dashboard.php"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-                    <li><a href="#"><i class="icon-feather-user"></i> My Profile</a></li>
-                    <li><a href="#"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
-                  </ul>
-                </div> -->
-              </div>
-            </div>
+            
             <span class="mmenu-trigger">
               <button class="hamburger utf-hamburger-collapse-item" type="button"> <span class="utf-hamburger-box-item"> <span class="utf-hamburger-inner-item"></span> </span> </button>
             </span>

@@ -26,7 +26,7 @@
           <li><a href="subcription.php"><i class="icon-feather-user"></i>Subscription</a></li>
           <!-- <li><a href="active_rfq.php"><i class="icon-material-outline-supervisor-account"></i> Active RFQ</a></li>
           <li><a href="inactive_rfq.php"><i class="icon-feather-heart"></i> Inactive RFQ</a></li>-->
-          <!-- <li><a href="user_profile.php"><i class="icon-feather-user"></i> My Profile</a></li> -->
+          <li><a href="vendor_profile.php"><i class="icon-feather-user"></i> My Profile</a></li>
         </ul>              
       </div>
     </div>          

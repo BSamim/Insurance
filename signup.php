@@ -10,20 +10,17 @@ if(isset($_POST['add_acc']))
     $username=$_POST['name'];
     $email=$_POST['emailaddress-register'];
     $password=$_POST['password-register'];
-    
     $encrypt_pass = md5($password);
-    $uniqueid=rand(time(), 100000000);
+
+    
     if($_POST['checktype']=='User'){
-        $sql="INSERT INTO users (username, email, password, userid) VALUES ('$username', '$email', '$encrypt_pass', '$uniqueid')";
-        db::query($sql);
-        $_SESSION['unique_id'] = $result['userid'];
-        
-        echo "<script>location='user/index.php'</script>";
+        $sql="INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$encrypt_pass')";
+        db::query($sql);        
+        echo "<script>location='index.php'</script>";
     }elseif($_POST['checktype']=='Vendor'){
-        $sql="INSERT INTO vendors (username, email, password, vendorid) VALUES ('$username', '$email', '$encrypt_pass', '$uniqueid')";
+        $sql="INSERT INTO vendors (username, email, password) VALUES ('$username', '$email', '$encrypt_pass')";
         db::query($sql);
-        $_SESSION['unique_id'] = $result['vendorid'];
-        echo "<script>location='vender/index.php'</script>";
+        echo "<script>location='index.php'</script>";
     }
 }
 
@@ -39,7 +36,7 @@ if(isset($_POST['login']))
             $user_pass = md5($password);
             $enc_pass = $row['password'];
             if($user_pass === $enc_pass){
-                $_SESSION['unique_id'] = $row['userid'];
+                $_SESSION['id'] = $row['id'];
                 echo "<script>location='user/index.php'</script>";
                 
             }else{
@@ -57,7 +54,7 @@ if(isset($_POST['login']))
             $vendor_pass = md5($password);
             $enc_pass = $row['password'];
             if($vendor_pass === $enc_pass){
-                $_SESSION['unique_id'] = $row['vendorid'];
+                $_SESSION['id'] = $row['id'];
                 echo "<script>location='vender/index.php'</script>";
                 
             }else{
