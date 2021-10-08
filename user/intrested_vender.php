@@ -1,7 +1,12 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
-
+$_id = $_SESSION['id'];
+//Get Interested Quote ID
+$queryToGetInterestedQuoteId = "SELECT * FROM interested_quotes WHERE user_id = '$_id'";
+$results = db::getRecords($queryToGetInterestedQuoteId);
+$Interested_vendors_id = '';
+$Interested_quote_id = '';
 ?>
 
 <!-- Dashboard Content -->
@@ -29,24 +34,57 @@ require_once("sidebar.php");
           </div>
           <div class="content">
             <ul class="utf-dashboard-box-list">
+              <?php
+              if ($results) {
+                foreach ($results as $result) {
+                  $Interested_vendor_id = $result['vendor_id'];
+                  $Interested_quote_id = $result['quote_id'];
+                  //Read Data
+                  $queryToGetInterestedVendors = "SELECT * FROM vendors WHERE id = '$Interested_vendor_id'";
+                  $queryToGetInterestedQuotes = "SELECT * FROM quotes WHERE id = '$Interested_quote_id'";
+                  $Interested_vendor = db::getRecord($queryToGetInterestedVendors);
+                  $Interested_quote = db::getRecord($queryToGetInterestedQuotes);
+                }
+              
+              ?>
               <li>
                 <div class="utf-manage-resume-overview-aera utf-manage-candidate">
                   <div class="utf-manage-resume-overview-aera-inner">
                     <div class="utf-manage-resume-avatar">
+                    <?php
+                        if(!$Interested_vendor['picture']){
+                      ?>
                       <a href="vender_detail.php"><img src="images/user_big_1.jpg" alt=""></a>
+                      <?php 
+                        }else{
+                      ?>
+                      <a href="vender_detail.php"><img src="../vender/images/<?php echo $Interested_vendor['picture']; ?>" alt=""></a>
+                      <?php 
+                        }
+                      ?>
                     </div>
                     <div class="utf-manage-resume-item">
-                      <h4><a href="#">John Williams</a></h4>
-                      <span class="utf-manage-resume-detail-item"><a href="#"><i class="icon-feather-mail"></i> demo@example.com</a></span>
-                      <span class="utf-manage-resume-detail-item"><i class="icon-feather-phone"></i> (+12) 0123-654-987</span>
+                      <h4><a href="#"><?php echo $Interested_vendor['username']; ?></a></h4>
+                      <span class="utf-manage-resume-detail-item"><a href="#"><i class="icon-feather-mail"></i><?php echo $Interested_vendor['email']; ?></a></span>
+                      <?php
+                        if(!$Interested_vendor['phone']){
+                      ?>
+                      <span class="utf-manage-resume-detail-item"><i class="icon-feather-phone"></i>contact number not given</span>
+                      <?php 
+                        }else{}
+                      ?>
+                      <span class="utf-manage-resume-detail-item"><i class="icon-feather-phone"></i><?php echo $Interested_vendor['phone']; ?></span>
                       <div class="utf-buttons-to-right">
                         <a href="#" class="button red ripple-effect ico" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
                       </div>
-                      <span class="utf-manage-resume-detail-item"><a href="#"> Commercial Insurance</a></span>
+                      <span class="utf-manage-resume-detail-item"><a href="#"><?php echo $Interested_quote['business_name']; ?></a></span>
                     </div>
                   </div>
                 </div>
               </li>
+              <?php
+              }
+              ?>
               <!-- <li>
                 <div class="utf-manage-resume-overview-aera utf-manage-candidate">
                   <div class="utf-manage-resume-overview-aera-inner">
@@ -139,6 +177,6 @@ require_once("sidebar.php");
       </div>
     </div>
 
-<?php
-require_once("dashboard_footer.php");
-?>
+    <?php
+    require_once("dashboard_footer.php");
+    ?>

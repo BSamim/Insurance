@@ -4,7 +4,7 @@ require_once("sidebar.php");
 $_id = $_SESSION['id'];
 //Get Interested Quote ID
 $queryToGetInterestedQuoteId = "SELECT * FROM interested_quotes WHERE vendor_id = '$_id'";
-$data = db::getRecord($queryToGetInterestedQuoteId);
+$data = db::getRecords($queryToGetInterestedQuoteId);
 $Interested_quote_id = '';
 if($data){
 $Interested_quote_id = $data['quote_id'];
