@@ -87,7 +87,7 @@ $results = db::getRecords($queryToGetActiveQuotes);
                       ?>
                       <a href="vendor_action.php?remove_interested_quote=<?php echo $result['id']; ?>&vendor=<?php echo $_id; ?>" class="button red ripple-effect ico" title="Uninterested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite" onclick="toggle_fv(this.id)"></i></a>
                       <?php }else{ ?>
-                      <a href="vendor_action.php?interested_quote=<?php echo $result['id']; ?>&vendor=<?php echo $_id; ?>" class="button red ripple-effect ico" title="Interested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite-border" onclick="toggle_fv(this.id)"></i></a>
+                      <a href="vendor_action.php?interested_quote=<?php echo $result['id']; ?>&vendor=<?php echo $_id; ?>&userid=<?php echo $result['user_id'] ?>" class="button red ripple-effect ico" title="Interested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite-border" onclick="toggle_fv(this.id)"></i></a>
                       <?php } ?>
                     </div>
                   </li>

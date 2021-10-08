@@ -39,7 +39,8 @@ if (isset($_POST['update_profile'])) {
 if (isset($_GET['interested_quote'])) {
     $quote_id=$_GET['interested_quote'];
     $v=$_GET['vendor'];
-    $sql = "INSERT INTO interested_quotes (quote_id, vendor_id) VALUES ('$quote_id', '$v')";
+    $u=$_GET['userid'];
+    $sql = "INSERT INTO interested_quotes (quote_id, vendor_id, user_id) VALUES ('$quote_id', '$v', '$u')";
     db::query($sql);
     
     echo "<script>location='post_forum.php?status=1'</script>";
