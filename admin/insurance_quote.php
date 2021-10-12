@@ -8,7 +8,7 @@ include("sidebar.php");
 $query = "SELECT * FROM insurance_quote";
 $insurance_quotes = db::getRecords($query);
 ?>
-
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <html>
 <head>
 	<style>
@@ -59,7 +59,7 @@ $insurance_quotes = db::getRecords($query);
 		<div class="page-header-content header-elements-md-inline">
 			<div class="page-title d-flex">
 				<a href="dashboard.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>Admin Pannel</a>
-				<span class="breadcrumb-item active">Insurense</span>
+				<span class="breadcrumb-item active">Insurance Quote</span>
 			</div>
 
 			<div class="header-elements d-none">
@@ -80,7 +80,7 @@ $insurance_quotes = db::getRecords($query);
 
 			</div>
 			<div class="col-md-6 mb-4 text-right ">
-				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Insurense  </button>
+				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Insurance Quote </button>
 			</div>
 			<div class="col-xl-12">
 				<div class="card px-4 py-3">
@@ -94,7 +94,7 @@ $insurance_quotes = db::getRecords($query);
 										<img class="card-img-top" src="uploads/<?php echo $insurance_quote['image']; ?>" alt="Banner img" style="width:100%;height:200px">
 										<div class="card-body p-0 mt-3">
 											<h2 class="card-title mt-2"><?php echo $insurance_quote['heading']; ?></h2>
-											<p><?php echo $insurance_quote['description']; ?></p>
+											<p><?php echo $insurance_quote['dcp']; ?></p>
 											<div class="text-center card_edit_delet">
 												<a class="text-dark" href="#"  data-toggle="modal" data-target="#myModal1<?php echo $insurance_quote['id']; ?>"><i class="fas fa-pencil-alt"></i></a>
 												<a href="action.php?del_insurance_quote=<?php echo $insurance_quote['id']; ?>" class="text-dark ml-4"><i class="fas fa-trash-alt"></i></a>
@@ -113,7 +113,7 @@ $insurance_quotes = db::getRecords($query);
 												<div class="row">
 													<div class="col-md-12">
 														<div class="text">
-															<h4 class="modal-title mb-3">update Banner</h4>
+															<h4 class="modal-title mb-3">Update Insurance Quote</h4>
 														</div>
 													</div>
 												</div>
@@ -121,15 +121,15 @@ $insurance_quotes = db::getRecords($query);
 											<div class="modal-body">
 												<form method="POST" action="action.php" enctype="multipart/form-data" >
 													<h5 >Large heading</h5>
-													<input class="form-control" type="text" name="heading" placeholder="Enter your name" value="<?php echo $insurance_quote['heading']; ?>">
+													<input class="form-control" type="text" name="heading" required value="<?php echo $insurance_quote['heading']; ?>">
 													<input type="hidden" name="id" value="<?php echo $insurance_quote['id']; ?>">
 
 
 													<h5 >Description</h5>
-													<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"><?php echo $insurance_quote['description']; ?></textarea>
+													<textarea class="form-control" name="dcp" required style="height: 130px;"><?php echo $insurance_quote['dcp']; ?></textarea>
 
-													<h5 class="mt-2" >image</h5>
-													<input class="form-control" type="file" name="image" placeholder="Enter your Email">
+													<h5 class="mt-2" >Image</h5>
+													<input class="form-control" type="file" name="image">
 
 													<button name="update_insurance_quote" type="submit" class="btn btn-success text-center ml-3 mt-3">Submit</button>
 												</form>
@@ -161,7 +161,7 @@ $insurance_quotes = db::getRecords($query);
 					<div class="row">
 						<div class="col-md-12">
 							<div class="text">
-								<h4 class="modal-title mb-3">Add Insurense</h4>
+								<h4 class="modal-title mb-3">Add Insurance Quote</h4>
 							</div>
 						</div>
 					</div>
@@ -169,13 +169,13 @@ $insurance_quotes = db::getRecords($query);
 				<div class="modal-body">
 					<form method="POST" action="action.php" enctype="multipart/form-data" >
 						<h5 >Large heading</h5>
-						<input class="form-control" type="text" name="heading" placeholder="Enter your name">
+						<input class="form-control" required type="text" name="heading" placeholder="Enter Heading">
 
 						<h5 >Description</h5>
-						<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
+						<textarea class="form-control" required name="dcp" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
 
 						<h5 class="mt-2" >image</h5>
-						<input class="form-control" type="file" name="image" placeholder="Enter your Email">
+						<input class="form-control" type="file" required name="image" placeholder="Enter your Email">
 
 						<button type="submit" name="add_insurance_quote" class="btn btn-success text-center ml-3 mt-3">Submit</button>
 					</form>
@@ -194,6 +194,7 @@ $insurance_quotes = db::getRecords($query);
 		function editit(){
 			return(confirm("Do you want to edit?"));
 		}
+
 	</script>
 
 	<?php

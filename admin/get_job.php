@@ -8,7 +8,7 @@ include("sidebar.php");
 $query = "SELECT * FROM get_job";
 $get_jobs = db::getRecords($query);
 ?>
-
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <html>
 <head>
 	<style>
@@ -94,9 +94,9 @@ $get_jobs = db::getRecords($query);
 								<div class="card p-3 text-center" >
 									<div class="card-body p-0 mt-3">
 										<h2 class="card-title mt-2"><?php echo $get_job['heading']; ?></h2>
-										<p><?php echo $get_job['description']; ?></p>
+										<p><?php echo $get_job['dcp']; ?></p>
 										<div class="text-center card_edit_delet">
-											<a class="text-dark" href="#"  data-toggle="modal" data-target="#myModal1<?php echo $get_job['id']; ?>"><i class="fas fa-pencil-alt"></i></a>
+											<a class="text-dark" href="update_get_job.php?id=<?php echo $get_job['id']; ?>" ><i class="fas fa-pencil-alt"></i></a>
 											<a href="action.php?del_get_job=<?php echo $get_job['id']; ?>" class="text-dark ml-4"><i class="fas fa-trash-alt"></i></a>
 										</div>
 									</div>
@@ -104,36 +104,6 @@ $get_jobs = db::getRecords($query);
 							</div>
 
 							<!-- update modal -->
-							<div class="modal fade" id="myModal1<?php echo $get_job['id']; ?>" role="dialog">
-								<div class="modal-dialog">
-
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header" style="background-color: black">
-											<div class="row">
-												<div class="col-md-12">
-													<div class="text">
-														<h4 class="modal-title mb-3">update Get a Job</h4>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-body">
-											<form method="POST" action="action.php" enctype="multipart/form-data" >
-												<h5 >Heading</h5>
-												<input class="form-control" type="text" name="heading" placeholder="Enter your name" value="<?php echo $get_job['heading']; ?>">
-
-												<input type="hidden" name="id" value="<?php echo $get_job['id']; ?>">
-
-												<h5 >Description</h5>
-												<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"><?php echo $get_job['description']; ?></textarea>
-
-												<button name="update_get_job" class="btn btn-success text-center ml-3 mt-3">Submit</button>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
 							<?php
 						}
 					}
@@ -165,10 +135,10 @@ $get_jobs = db::getRecords($query);
 				<div class="modal-body">
 					<form method="POST" action="action.php" enctype="multipart/form-data" >
 						<h5 >Heading</h5>
-						<input class="form-control" type="text" name="heading" placeholder="Enter your name">
+						<input class="form-control" type="text" required name="heading" placeholder="Enter your name">
 
 						<h5 >Description</h5>
-						<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
+						<textarea class="form-control" name="dcp" required placeholder="Lorem ipsum" style="height: 130px;"></textarea>
 
 						<button name="add_get_job" class="btn btn-success text-center ml-3 mt-3">Submit</button>
 					</form>
@@ -187,6 +157,7 @@ $get_jobs = db::getRecords($query);
 		function editit(){
 			return(confirm("Do you want to edit?"));
 		}
+		CKEDITOR.replace( 'dcp' );
 	</script>
 
 	<?php

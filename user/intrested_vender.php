@@ -1,9 +1,8 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
-$_id = $_SESSION['id'];
 //Get Interested Quote ID
-$queryToGetInterestedQuoteId = "SELECT * FROM interested_quotes WHERE user_id = '$_id'";
+$queryToGetInterestedQuoteId = "SELECT * FROM interested_quotes WHERE user_id = '$id'";
 $results = db::getRecords($queryToGetInterestedQuoteId);
 $Interested_vendors_id = '';
 $Interested_quote_id = '';
@@ -71,9 +70,12 @@ $Interested_quote_id = '';
                       ?>
                       <span class="utf-manage-resume-detail-item"><i class="icon-feather-phone"></i>contact number not given</span>
                       <?php 
-                        }else{}
+                        }else{
                       ?>
                       <span class="utf-manage-resume-detail-item"><i class="icon-feather-phone"></i><?php echo $Interested_vendor['phone']; ?></span>
+                      <?php 
+                        }
+                      ?>
                       <div class="utf-buttons-to-right">
                         <a href="#" class="button red ripple-effect ico" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
                       </div>

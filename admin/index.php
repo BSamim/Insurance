@@ -69,17 +69,17 @@
                                 
                                 
                                 
-                                 <form action="action.php" method="post">
+                                 <form action="action.php" method="POST">
                                      
 								<div class="form-group form-group-feedback form-group-feedback-left">
-									<input type="text" name="username" class="form-control" placeholder="Username">
+									<input type="text" name="username" required class="form-control" placeholder="Username">
 								    <div class="form-control-feedback">
 										<i class="icon-user text-muted"></i>
 									</div>
 								</div>
 
 								<div class="form-group form-group-feedback form-group-feedback-left">
-									<input type="password" name="password" class="form-control" placeholder="Password">
+									<input type="password" name="password" required class="form-control" placeholder="Password">
 									<div class="form-control-feedback">
 										<i class="icon-lock2 text-muted"></i>
 									</div>
@@ -97,8 +97,8 @@
 								</div>
 
 								<div class="form-group">
-									<!-- <button type="submit" name="login" class="btn btn-primary btn-block">Sign in</button> -->
-									<a href="dashboard.php" name="login" class="btn btn-primary btn-block">Sign in</a>
+									 <button type="submit" name="login" class="btn btn-primary btn-block">Sign in</button> 
+									<!--<a href="dashboard.php" name="login" class="btn btn-primary btn-block">Sign in</a>-->
 								</div>
 
                                   

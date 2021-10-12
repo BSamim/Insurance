@@ -1,6 +1,6 @@
 <?php
 session_start();
-$id = $_SESSION['id'];
+$id = $_SESSION['ins_user_id'];
 require_once("../database.php");
 $db = db::open();
 
@@ -66,7 +66,7 @@ if (isset($_GET['activate_quote'])) {
 
 //logout
 if (isset($_GET['user_logout'])) {
-    unset($_SESSION['id']);
+    unset($_SESSION['ins_user_id']);
     echo "<script>location='../index.php'</script>";
 }
 
@@ -94,3 +94,69 @@ if (isset($_POST['update_profile'])) {
     $res = db::query($query);
     echo "<script>location='user_profile.php?status=1'</script>";
 }
+//send msg
+if (isset($_GET['submit_msg'])){
+    $msg=$_POST['msg'];
+    $quote_id=$_POST['quote_id'];
+    $from_id=$id;
+    $usertype=$_POST['usertype'];
+    $sql = "INSERT INTO messages (quote_id, from_id, msg, usertype) VALUES ('$quote_id', '$from_id', '$msg', '$usertype')";
+    $res=db::insertRecord($sql);
+}
+
+//load Chat
+if (isset($_GET['load_chat'])){
+    $quote_id=$_POST['quote_id'];
+    $login_id= $id;
+    $output="";
+    $getchat="SELECT * FROM messages WHERE quote_id = '$quote_id'";
+    $chats = db::getRecords($getchat);
+    if(!$chats){
+        $output .= '<div class="text">No messages are available. Once you send message they will appear here.</div>';
+    }else{
+        foreach($chats as $chat){
+            $msg_sender_id=$chat['from_id'];
+            if( $chat['usertype']=='user'){
+                $getProfile="SELECT * FROM users WHERE id = $msg_sender_id";
+                $getProfileData = db::getRecord($getProfile);
+                // if($msg_sender_id==$id){
+                    $output .= '<div class="main_message_wraper d-flex justify-content-end px-lg-5 px-1">
+                                    <div class="meassage_text_wraper  ps-lg-4 ps-2 pe-lg-2 pe-1 py-lg-3 py-2">
+                                        <p class="m-0" style="margin-left: auto;">'.$chat['msg'].'</p>
+                                    </div>
+                                </div>';
+            } 
+            elseif($chat['usertype']=='vendor'){
+                $getProfile="SELECT * FROM vendors WHERE id = $msg_sender_id";
+                $getProfileData = db::getRecord($getProfile);
+                if($getProfileData['picture']){
+                    $output .= '<div class="main_message_wraper d-flex px-lg-5 px-1 mb-5">
+                                    <div class="message_img_wraper user-avatar status-online me-3 shadow">
+                                        <img src="../vender/images/'.$getProfileData['picture'].'">
+                                    </div>
+                                    <div class="meassage_text_wraper  ps-lg-4 ps-2 pe-lg-2 pe-1 py-lg-3 py-2">
+                                        <b><p class="m-0" style="margin-left: auto;">'.$getProfileData['username'].'</p></b>
+                                        <p class="m-0" style="margin-left: auto;">'.$chat['msg'].'</p>
+                                    </div>
+                                </div>';
+                }else{
+                    $output .= '<div class="main_message_wraper d-flex px-lg-5 px-1 mb-5">
+                                    <div class="message_img_wraper user-avatar status-online me-3 shadow">
+                                        <img src="../vender/images/user-avatar-placeholder.png">
+                                    </div>
+                                    <div class="meassage_text_wraper  ps-lg-4 ps-2 pe-lg-2 pe-1 py-lg-3 py-2">
+                                        <b><p class="m-0" style="margin-left: auto;">'.$getProfileData['username'].'</p></b>
+                                        <p class="m-0" style="margin-left: auto;">'.$chat['msg'].'</p>
+                                    </div>
+                                </div>';
+                }
+            }else{
+                $output .= '<div class="text">Error Loading the Chat</div>';
+            }
+            
+        }
+    }
+    echo $output;
+}
+
+?>

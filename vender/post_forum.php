@@ -1,9 +1,8 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
-$_id = $_SESSION['id'];
 //Read Data
-$queryToGetActiveQuotes = "SELECT * FROM quotes WHERE effective_date >= '$date'";
+$queryToGetActiveQuotes = "SELECT * FROM quotes WHERE quote_status = 'active' ";
 $results = db::getRecords($queryToGetActiveQuotes);
 ?>
 <style>
@@ -73,7 +72,7 @@ $results = db::getRecords($queryToGetActiveQuotes);
                       </div>
                     </div>
                     <ul class="dashboard-task-info">
-                      <li><a href="chat.php"><span>Chat</span></a></li>
+                      <li><a href="chat.php?quote_id=<?php echo $result['id']; ?>"><span>Chat</span></a></li>
                     </ul>
                     <ul class="dashboard-task-info">
                       <li><span><b>Effective Date: </b><?php echo $result['effective_date']; ?></span></li>
@@ -81,13 +80,13 @@ $results = db::getRecords($queryToGetActiveQuotes);
                     <div class="utf-buttons-to-right">
                       <?php
                         $_quote_id=$result['id'];
-                        $queryToCheckInterestedQuote= "SELECT * FROM interested_quotes WHERE quote_id='$_quote_id' AND vendor_id= '$_id' ";
+                        $queryToCheckInterestedQuote= "SELECT * FROM interested_quotes WHERE quote_id='$_quote_id' AND vendor_id= '$id' ";
                         $data = db::getRecord($queryToCheckInterestedQuote);
                         if($data){
                       ?>
-                      <a href="vendor_action.php?remove_interested_quote=<?php echo $result['id']; ?>&vendor=<?php echo $_id; ?>" class="button red ripple-effect ico" title="Uninterested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite" onclick="toggle_fv(this.id)"></i></a>
+                      <a href="vendor_action.php?remove_interested_quote=<?php echo $result['id']; ?>&vendor=<?php echo $id; ?>" class="button red ripple-effect ico" title="Uninterested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite" onclick="toggle_fv(this.id)"></i></a>
                       <?php }else{ ?>
-                      <a href="vendor_action.php?interested_quote=<?php echo $result['id']; ?>&vendor=<?php echo $_id; ?>&userid=<?php echo $result['user_id'] ?>" class="button red ripple-effect ico" title="Interested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite-border" onclick="toggle_fv(this.id)"></i></a>
+                      <a href="vendor_action.php?interested_quote=<?php echo $result['id']; ?>&vendor=<?php echo $id; ?>&userid=<?php echo $result['user_id'] ?>" class="button red ripple-effect ico" title="Interested" data-tippy-placement="top"><i id="fv1" class="icon-material-outline-favorite-border" onclick="toggle_fv(this.id)"></i></a>
                       <?php } ?>
                     </div>
                   </li>

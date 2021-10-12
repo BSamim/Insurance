@@ -15,7 +15,7 @@ if(isset($_POST['add_acc']))
     
     if($_POST['checktype']=='User'){
         $sql="INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$encrypt_pass')";
-        db::query($sql);        
+        $res=db::query($sql);
         echo "<script>location='index.php'</script>";
     }elseif($_POST['checktype']=='Vendor'){
         $sql="INSERT INTO vendors (username, email, password) VALUES ('$username', '$email', '$encrypt_pass')";
@@ -36,7 +36,7 @@ if(isset($_POST['login']))
             $user_pass = md5($password);
             $enc_pass = $row['password'];
             if($user_pass === $enc_pass){
-                $_SESSION['id'] = $row['id'];
+                $_SESSION['ins_user_id'] = $row['id'];
                 echo "<script>location='user/index.php'</script>";
                 
             }else{
@@ -54,7 +54,7 @@ if(isset($_POST['login']))
             $vendor_pass = md5($password);
             $enc_pass = $row['password'];
             if($vendor_pass === $enc_pass){
-                $_SESSION['id'] = $row['id'];
+                $_SESSION['ins_vendor_id'] = $row['id'];
                 echo "<script>location='vender/index.php'</script>";
                 
             }else{

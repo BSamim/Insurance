@@ -1,9 +1,4 @@
 <?php
-  session_start();
-  $id=$_SESSION['id'];
-  if (!$id) {
-    header('location:../index.php');
-  }
   require_once("../database.php");
   $date = date("Y-m-d");
 ?>
@@ -64,8 +59,7 @@
               <ul id="responsive">
                  <li><a href="../index.php">Home</a></li>
                 <li><a href="../about-us.php">About</a></li>
-                <li><a href="../post.php">Need Insurance?</a></li>
-                <li><a href="../job.php">Are You an Agent?</a></li>
+                <li><a href="index.php">Dashboard</a></li>
                 <li><a href="../contact.php">Contact</a></li>
               </ul>
             </nav> 

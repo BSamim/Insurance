@@ -54,13 +54,12 @@ $results = db::getRecords($queryToGetActiveQuotes);
                       </div>
                     </div>
                     <ul class="dashboard-task-info">
-                      <li><a href="chat.php"><span>Chat</span></a></li>
+                      <li><a href="chat.php?quote_id=<?php echo $result['id']; ?>"><span>Chat</span></a></li>
                     </ul>
                     <ul class="dashboard-task-info">
                       <li><span ><b>Effective Date: </b><?php echo $result['effective_date']; ?></span></li>
                     </ul>
                     <div class="utf-buttons-to-right">
-                      <a href="#small-dialog" class="popup-with-zoom-anim button green ripple-effect ico" title="Edit Quote" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
                       <a href="user_action.php?del_active_quote=<?php echo $result['id']; ?>" class="button red ripple-effect ico" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
                       <a href="user_action.php?deactivate_quote=<?php echo $result['id']; ?>" class="button red ripple-effect ico" title="Deactivate" data-tippy-placement="top"><i class="icon-material-outline-highlight-off"></i></a>
                     </div>

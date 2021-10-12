@@ -1,14 +1,11 @@
 <?php
-
-
-include("database.php");
 include("header.php");
 include("sidebar.php");
 
 $query = "SELECT * FROM insurence";
 $insurences = db::getRecords($query);
 ?>
-
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <html>
 <head>
 	<style>
@@ -59,7 +56,7 @@ $insurences = db::getRecords($query);
 		<div class="page-header-content header-elements-md-inline">
 			<div class="page-title d-flex">
 				<a href="dashboard.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>Admin Pannel</a>
-				<span class="breadcrumb-item active">Insurense</span>
+				<span class="breadcrumb-item active">Insurance</span>
 			</div>
 
 			<div class="header-elements d-none">
@@ -80,7 +77,7 @@ $insurences = db::getRecords($query);
 
 			</div>
 			<div class="col-md-6 mb-4 text-right ">
-				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Insurense  </button>
+				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Insurance  </button>
 			</div>
 			<div class="col-xl-12">
 				<div class="card px-4 py-3">
@@ -94,7 +91,7 @@ $insurences = db::getRecords($query);
 										<img class="card-img-top" src="uploads/<?php echo $insurence['image']; ?>" alt="Banner img" style="width:100%;height:200px">
 										<div class="card-body p-0 mt-3">
 											<h2 class="card-title mt-2"><?php echo $insurence['heading']; ?></h2>
-											<p><?php echo $insurence['description']; ?></p>
+											<p><?php echo $insurence['dcp']; ?></p>
 											<div class="text-center card_edit_delet">
 												<a class="text-dark" href="#"  data-toggle="modal" data-target="#myModal1<?php echo $insurence['id']; ?>"><i class="fas fa-pencil-alt"></i></a>
 												<a href="action.php?del_insurence=<?php echo $insurence['id']; ?>" class="text-dark ml-4"><i class="fas fa-trash-alt"></i></a>
@@ -113,7 +110,7 @@ $insurences = db::getRecords($query);
 												<div class="row">
 													<div class="col-md-12">
 														<div class="text">
-															<h4 class="modal-title mb-3">update Banner</h4>
+															<h4 class="modal-title mb-3">Update Insurance</h4>
 														</div>
 													</div>
 												</div>
@@ -121,12 +118,12 @@ $insurences = db::getRecords($query);
 											<div class="modal-body">
 												<form method="POST" action="action.php" enctype="multipart/form-data" >
 													<h5 >Large heading</h5>
-													<input class="form-control" type="text" name="heading" placeholder="Enter your name" value="<?php echo $insurence['heading']; ?>">
+													<input class="form-control" type="text" name="heading" required value="<?php echo $insurence['heading']; ?>">
 													<input type="hidden" name="id" value="<?php echo $insurence['id']; ?>">
 
 
 													<h5 >Description</h5>
-													<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"><?php echo $insurence['description']; ?></textarea>
+													<textarea class="form-control" name="dcp" required style="height: 130px;"><?php echo $insurence['dcp']; ?></textarea>
 
 													<h5 class="mt-2" >image</h5>
 													<input class="form-control" type="file" name="image" placeholder="Enter your Email">
@@ -161,7 +158,7 @@ $insurences = db::getRecords($query);
 					<div class="row">
 						<div class="col-md-12">
 							<div class="text">
-								<h4 class="modal-title mb-3">Add Insurense</h4>
+								<h4 class="modal-title mb-3">Add Insurance</h4>
 							</div>
 						</div>
 					</div>
@@ -169,13 +166,13 @@ $insurences = db::getRecords($query);
 				<div class="modal-body">
 					<form method="POST" action="action.php" enctype="multipart/form-data" >
 						<h5 >Large heading</h5>
-						<input class="form-control" type="text" name="heading" placeholder="Enter your name">
+						<input class="form-control" required type="text" name="heading" placeholder="Enter Heading">
 
 						<h5 >Description</h5>
-						<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
+						<textarea class="form-control" required name="dcp" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
 
 						<h5 class="mt-2" >image</h5>
-						<input class="form-control" type="file" name="image" placeholder="Enter your Email">
+						<input class="form-control" required type="file" name="image">
 
 						<button type="submit" name="add_banner" class="btn btn-success text-center ml-3 mt-3">Submit</button>
 					</form>
@@ -195,6 +192,10 @@ $insurences = db::getRecords($query);
 			return(confirm("Do you want to edit?"));
 		}
 	</script>
+
+	<script>
+
+</script>
 
 	<?php
 

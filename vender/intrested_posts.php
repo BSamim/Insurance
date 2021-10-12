@@ -1,18 +1,10 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
-$_id = $_SESSION['id'];
+$_id = $_SESSION['ins_vendor_id'];
 //Get Interested Quote ID
 $queryToGetInterestedQuoteId = "SELECT * FROM interested_quotes WHERE vendor_id = '$_id'";
 $data = db::getRecords($queryToGetInterestedQuoteId);
-$Interested_quote_id = '';
-if($data){
-$Interested_quote_id = $data['quote_id'];
-}
-//Read Data
-$queryToGetInterestedQuotes = "SELECT * FROM quotes WHERE id = '$Interested_quote_id'";
-$results = db::getRecords($queryToGetInterestedQuotes);
-
 ?>
 <style>
   .utf-buttons-to-right {
@@ -45,8 +37,14 @@ $results = db::getRecords($queryToGetInterestedQuotes);
           <div class="content">
             <ul class="utf-dashboard-box-list">
               <?php
-              if ($results) {
-                foreach ($results as $result) {
+              $Interested_quote_id = '';
+              if ($data) {
+                foreach ($data as $row) {
+                  $Interested_quote_id = $row['quote_id'];
+                  //Read Data
+                  $queryToGetInterestedQuotes = "SELECT * FROM quotes WHERE id = '$Interested_quote_id'";
+                  $result = db::getRecord($queryToGetInterestedQuotes);
+                  if($result){
               ?>
                   <li>
                     <div class="utf-job-listing width-adjustment">
@@ -78,6 +76,7 @@ $results = db::getRecords($queryToGetInterestedQuotes);
                     </div>
                   </li>
               <?php
+                  }
                 }
               }
               ?>

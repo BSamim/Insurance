@@ -49,59 +49,23 @@
 						</a>
 					</li>
 					<li class="nav-item nav-item-submenu ">
-						        <a href="#" class="nav-link">
-									<i class="icon-user"></i>
-								<span>
-									Home
-								</span>
-							</a>
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-								
-								<li class="nav-item"><a class="nav-link active" href="insurense.php">Insurense</a></li>
-								<li class="nav-item"><a class="nav-link" href="canadians.php">Side Image & contant</a>
-								</li>
-								<li class="nav-item"><a class="nav-link" href="insurance_quote.php">Insurance Quote</a></li>
-								<li class="nav-item"><a class="nav-link" href="testeminial.php">Testeminial</a></li>
-								<li class="nav-item"><a class="nav-link" href="brand.php">Company Brands </a></li>
-
-							</ul>
-                        </li>  
-
-					<!-- <li class="nav-item">
-						<a href="insurense.php" class="nav-link">
+						<a href="#" class="nav-link">
 							<i class="icon-user"></i>
 							<span>
-								Insurense
+								Home
 							</span>
 						</a>
-					</li> -->
+						<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 
-					<!-- <li class="nav-item">
-						<a href="canadians.php" class="nav-link">
-							<i class="icon-user"></i>
-							<span>
-								Canadians
-							</span>
-						</a>
-					</li>  -->
+							<li class="nav-item"><a class="nav-link" href="insurense.php">Insurance</a></li>
+							<li class="nav-item"><a class="nav-link" href="categories.php">Categories</a></li>
+							<li class="nav-item"><a class="nav-link" href="canadians.php">Side Image & Content</a></li>
+							<li class="nav-item"><a class="nav-link" href="insurance_quote.php">Insurance Quote</a></li>
+							<li class="nav-item"><a class="nav-link" href="testeminial.php">Testimonial</a></li>
+							<li class="nav-item"><a class="nav-link" href="brand.php">Company Brands </a></li>
 
-					<!-- <li class="nav-item">
-						<a href="insurance_quote.php" class="nav-link">
-							<i class="icon-user"></i>
-							<span>
-								Insurance quote
-							</span>
-						</a>
-					</li>   -->
-
-					<!-- <li class="nav-item">
-						<a href="testeminial.php" class="nav-link">
-							<i class="icon-user"></i>
-							<span>
-								Testeminial
-							</span>
-						</a>
-					</li>    -->
+						</ul>
+					</li> 
 
 					<li class="nav-item">
 						<a href="about.php" class="nav-link">
@@ -116,7 +80,7 @@
 						<a href="post_quote.php" class="nav-link">
 							<i class="icon-user"></i>
 							<span>
-								need insurance?
+								Need Insurance?
 							</span>
 						</a>
 					</li> 
@@ -125,10 +89,19 @@
 						<a href="get_job.php" class="nav-link">
 							<i class="icon-user"></i>
 							<span>
-								Are You An Agent 
+								Are You An Agent ?
 							</span>
 						</a>
-					</li> 
+					</li>
+
+					<li class="nav-item">
+						<a href="subscription.php" class="nav-link">
+							<i class="icon-user"></i>
+							<span>
+								Subscription
+							</span>
+						</a>
+					</li>
 
 					<li class="nav-item">
 						<a href="contact.php" class="nav-link">

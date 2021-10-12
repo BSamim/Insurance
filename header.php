@@ -1,3 +1,14 @@
+<?php
+session_start();
+$userid='';
+$vendorid = '';
+if (isset($_SESSION['ins_user_id'])) {
+  $userid = $_SESSION['ins_user_id'];
+}
+if (isset($_SESSION['ins_vendor_id'])) {
+  $vendorid = $_SESSION['ins_vendor_id'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,8 +34,8 @@
   <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap" rel="stylesheet"> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <style>
   li a {
@@ -33,9 +44,25 @@
     letter-spacing: 1px;
 
   }
-  body, h1, h2, h3, h4, h5, h6, input[type="text"], input[type="password"], input[type="email"], textarea, select, input[type="button"], input[type="submit"], button, body .pac-container{
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea,
+  select,
+  input[type="button"],
+  input[type="submit"],
+  button,
+  body .pac-container {
     /*font-family: 'Poppins', sans-serif;*/
-font-family: 'PT Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
   }
 </style>
 
@@ -63,8 +90,22 @@ font-family: 'PT Sans', sans-serif;
               <ul id="responsive">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about-us.php">About</a></li>
-                <li><a href="post.php">Need Insurance?</a></li>
-                <li><a href="job.php">Are You an Agent?</a></li>
+                <?php
+                if (!$userid && !$vendorid) {
+                ?>
+                  <li><a href="post.php">Need Insurance?</a></li>
+                  <li><a href="job.php">Are You an Agent?</a></li>
+                <?php
+                } elseif ($vendorid) {
+                ?>
+                  <li><a href="vender/index.php">Dashboard</a></li>
+                <?php
+                } elseif ($userid) {
+                ?>
+                  <li><a href="user/index.php">Dashboard</a></li>
+                <?php
+                }
+                ?>
                 <li><a href="contact.php">Contact</a></li>
               </ul>
             </nav>

@@ -13,7 +13,7 @@ class db{
 			$dbname = 'insurance';
 			$dbserver = 'localhost';
 		}else{ //for live server
-              $dbuser = 'ateckwgz_insurance_admin';
+            $dbuser = 'ateckwgz_insurance_admin';
 			$dbpwd = 'atecco@123';
 			$dbname = 'ateckwgz_insurance';
 			$dbserver = 'localhost';

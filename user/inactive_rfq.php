@@ -54,7 +54,7 @@ $results = db::getRecords($queryToGetActiveQuotes);
                       </div>
                     </div>
                     <ul class="dashboard-task-info">
-                      <li><a href="chat.php"><span>Chat</span></a></li>
+                      <li><a href="chat.php?quote_id=<?php echo $result['id']; ?>"><span>Chat</span></a></li>
                     </ul>
                     <ul class="dashboard-task-info">
                       <li><span ><b>Effective Date: </b><?php echo $result['effective_date']; ?></span></li>

@@ -8,7 +8,7 @@ include("sidebar.php");
 $query = "SELECT * FROM post_quote";
 $post_quotes = db::getRecords($query);
 ?>
-
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <html>
 <head>
 	<style>
@@ -59,7 +59,7 @@ $post_quotes = db::getRecords($query);
 		<div class="page-header-content header-elements-md-inline">
 			<div class="page-title d-flex">
 				<a href="dashboard.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>Admin Pannel</a>
-				<span class="breadcrumb-item active">Insurense</span>
+				<span class="breadcrumb-item active">Quotes</span>
 			</div>
 
 			<div class="header-elements d-none">
@@ -80,7 +80,7 @@ $post_quotes = db::getRecords($query);
 
 			</div>
 			<div class="col-md-6 mb-4 text-right ">
-				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Insurense  </button>
+				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Quote  </button>
 			</div>
 			<div class="col-xl-12">
 				<div class="card px-4 py-3">
@@ -93,9 +93,9 @@ $post_quotes = db::getRecords($query);
 									<div class="card p-3 text-center">
 										<div class="card-body p-0 mt-3">
 											<h2 class="card-title mt-2"><?php echo $post_quote['heading']; ?></h2>
-											<p><?php echo $post_quote['description']; ?></p>
+											<p><?php echo $post_quote['dcp']; ?></p>
 											<div class="text-center card_edit_delet">
-												<a class="text-dark" href="#"  data-toggle="modal" data-target="#myModal1<?php echo $post_quote['id']; ?>"><i class="fas fa-pencil-alt"></i></a>
+												<a class="text-dark" href="update_post_quote.php?id=<?php echo $post_quote['id']; ?>"><i class="fas fa-pencil-alt"></i></a>
 												<a href="action.php?del_post_quote=<?php echo $post_quote['id']; ?>" class="text-dark ml-4"><i class="fas fa-trash-alt"></i></a>
 											</div>
 										</div>
@@ -103,36 +103,6 @@ $post_quotes = db::getRecords($query);
 								</div>
 
 								<!-- update modal -->
-								<div class="modal fade" id="myModal1<?php echo $post_quote['id']; ?>" role="dialog">
-									<div class="modal-dialog">
-
-										<!-- Modal content-->
-										<div class="modal-content">
-											<div class="modal-header" style="background-color: black">
-												<div class="row">
-													<div class="col-md-12">
-														<div class="text">
-															<h4 class="modal-title mb-3">update Banner</h4>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="modal-body">
-												<form method="POST" action="action.php" enctype="multipart/form-data" >
-													<h5 >Large heading</h5>
-													<input class="form-control" type="text" name="heading" placeholder="Enter your name" value="<?php echo $post_quote['heading']; ?>">
-													<input type="hidden" name="id" value="<?php echo $post_quote['id']; ?>">
-
-
-													<h5 >Description</h5>
-													<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"><?php echo $post_quote['description']; ?></textarea>
-
-													<button name="update_post_quote" type="submit" class="btn btn-success text-center ml-3 mt-3">Submit</button>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
 								<?php
 							}
 						}
@@ -157,7 +127,7 @@ $post_quotes = db::getRecords($query);
 					<div class="row">
 						<div class="col-md-12">
 							<div class="text">
-								<h4 class="modal-title mb-3">Add Insurense</h4>
+								<h4 class="modal-title mb-3">Add Quote</h4>
 							</div>
 						</div>
 					</div>
@@ -165,10 +135,10 @@ $post_quotes = db::getRecords($query);
 				<div class="modal-body">
 					<form method="POST" action="action.php" enctype="multipart/form-data" >
 						<h5 >Large heading</h5>
-						<input class="form-control" type="text" name="heading" placeholder="Enter your name">
+						<input class="form-control" required type="text" name="heading" placeholder="Enter your name">
 
 						<h5 >Description</h5>
-						<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
+						<textarea class="form-control" required name="dcp" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
 
 						<button type="submit" name="add_post_quote" class="btn btn-success text-center ml-3 mt-3">Submit</button>
 					</form>
@@ -187,6 +157,8 @@ $post_quotes = db::getRecords($query);
 		function editit(){
 			return(confirm("Do you want to edit?"));
 		}
+
+		CKEDITOR.replace( 'dcp' );
 	</script>
 
 	<?php

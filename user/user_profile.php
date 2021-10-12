@@ -1,7 +1,6 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
-$id = $_SESSION["id"];
 $queryToGetAllSections = "SELECT * FROM users WHERE id = '$id'";
 $result = db::getRecord($queryToGetAllSections);
 ?>

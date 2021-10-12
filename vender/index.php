@@ -1,6 +1,18 @@
 <?php
 require_once("header.php");
 require_once("sidebar.php");
+$queryToGetAllSections = "SELECT * FROM vendors WHERE id = '$id'";
+$result = db::getRecord($queryToGetAllSections);
+
+//Calculate Interested Vendors
+$queryToGetInterestedQuoteId = "SELECT * FROM interested_quotes WHERE vendor_id = '$id'";
+$Data = db::getRecords($queryToGetInterestedQuoteId);
+$interestedPostCount = 0;
+if($Data){
+foreach ($Data as $row) {
+  $interestedPostCount += 1;
+}
+}
 ?>
 
 <!-- Dashboard Content -->
@@ -20,18 +32,18 @@ require_once("sidebar.php");
 </div>
 <div class="utf-dashboard-content-inner-aera">   
   <div class="notification success closeable">
-    <p>You are Currently Signed in as <strong>John Williams</strong> Has Been Approved!</p>
+    <p>You are Currently Signed in as <strong><?php echo $result['username']; ?></strong>!</p>
     <a class="close" href="#"></a> 
   </div>	
   <div class="utf-funfacts-container-aera">
     <div class="fun-fact" data-fun-fact-color="#efa80f">
      <div class="fun-fact-icon"><i class="icon-feather-heart"></i></div>
      <div class="fun-fact-text"> 
-      <h4>549</h4>
+      <h4><?php echo $interestedPostCount ?></h4>
       <span>Intrested Qoutes</span>
     </div>            
   </div>
-  <div class="fun-fact" data-fun-fact-color="#0fc5bf">
+  <!-- <div class="fun-fact" data-fun-fact-color="#0fc5bf">
     <div class="fun-fact-icon"><i class="icon-brand-telegram-plane"></i></div>
     <div class="fun-fact-text"> 
       <h4>120</h4>
@@ -44,7 +56,7 @@ require_once("sidebar.php");
       <h4>2250</h4>
       <span>Inactive</span>
     </div>            
-  </div>
+  </div> -->
 </div>
 
 <div class="row">

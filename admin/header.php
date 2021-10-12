@@ -177,7 +177,7 @@ $('textarea').keyup(function() {
 					<div class="dropdown-menu dropdown-menu-right">
                       
 						<a href="profile.php" class="dropdown-item"><i class="icon-profile"></i> Profile</a> 
-						<a href="action.php?logout=1" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+						<a href="action.php?mn_admin_logout" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
 					</div>
 				</li>
 			</ul>

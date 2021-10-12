@@ -1,6 +1,6 @@
 <?php
 session_start();
-$admin = $_SESSION['email'];
+// $admin = $_SESSION['email'];
 require_once("database.php");
 $db = db::open();
 $datee = date("d-m-Y");
@@ -16,7 +16,7 @@ if(isset($_POST['login']))
     if($rec!=NULL)
     {  
         
-        $_SESSION['email']=$email;
+        $_SESSION['mn_admin']=$email;
         echo "<script>location='dashboard.php'</script>";
     }
     else
@@ -55,7 +55,7 @@ if (isset($_POST['update']))
 //logout
 if(isset($_GET['logout']))
 {
-  unset($_SESSION['email']);
+  unset($_SESSION['mn_admin']);
    echo "<script>location='index.php'</script>";
 }
 
@@ -73,7 +73,7 @@ if(isset($_GET['delete_viewer']))
 // add_banner
 if (isset($_POST['add_banner'])) {
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
     $file_loc = $_FILES['image']['tmp_name'];
@@ -84,7 +84,7 @@ if (isset($_POST['add_banner'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO insurence (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO insurence (`heading`,`dcp`,`image`) VALUES ('$heading','$dcp','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='insurense.php'</script>";
 }
@@ -93,10 +93,10 @@ if (isset($_POST['add_banner'])) {
 if (isset($_POST['update_banner'])) {
     $id = $_POST['id'];
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE insurence SET heading='$heading', description='$description' WHERE id = '$id'";
+        $query = "UPDATE insurence SET heading='$heading', dcp='$dcp' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -107,7 +107,7 @@ if (isset($_POST['update_banner'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE insurence SET heading='$heading',description='$description',image='$final_file' WHERE id = '$id'";
+        $query = "UPDATE insurence SET heading='$heading',dcp='$dcp',image='$final_file' WHERE id = '$id'";
     }
 
     $res = db::query($query);
@@ -129,7 +129,7 @@ if (isset($_GET['del_insurence'])) {
 // add_canadian
 if (isset($_POST['add_canadian'])) {
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
     $file_loc = $_FILES['image']['tmp_name'];
@@ -140,7 +140,7 @@ if (isset($_POST['add_canadian'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO canadian (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO canadian (`heading`,`dcp`,`image`) VALUES ('$heading','$dcp','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='canadians.php'</script>";
 }
@@ -149,10 +149,10 @@ if (isset($_POST['add_canadian'])) {
 if (isset($_POST['update_canadian'])) {
     $id = $_POST['id'];
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE canadian SET heading='$heading', description='$description' WHERE id = '$id'";
+        $query = "UPDATE canadian SET heading='$heading', dcp='$dcp' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -163,7 +163,7 @@ if (isset($_POST['update_canadian'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE canadian SET heading='$heading',description='$description',image='$final_file' WHERE id = '$id'";
+        $query = "UPDATE canadian SET heading='$heading',dcp='$dcp',image='$final_file' WHERE id = '$id'";
     }
 
     $res = db::query($query);
@@ -186,7 +186,7 @@ if (isset($_GET['del_canadian'])) {
 // add_insurance_quote
 if (isset($_POST['add_insurance_quote'])) {
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
     $file_loc = $_FILES['image']['tmp_name'];
@@ -197,7 +197,7 @@ if (isset($_POST['add_insurance_quote'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO insurance_quote (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO insurance_quote (`heading`,`dcp`,`image`) VALUES ('$heading','$dcp','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='insurance_quote.php'</script>";
 }
@@ -206,10 +206,10 @@ if (isset($_POST['add_insurance_quote'])) {
 if (isset($_POST['update_insurance_quote'])) {
     $id = $_POST['id'];
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE insurance_quote SET heading='$heading', description='$description' WHERE id = '$id'";
+        $query = "UPDATE insurance_quote SET heading='$heading', dcp='$dcp' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -220,7 +220,7 @@ if (isset($_POST['update_insurance_quote'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE insurance_quote SET heading='$heading',description='$description',image='$final_file' WHERE id = '$id'";
+        $query = "UPDATE insurance_quote SET heading='$heading',dcp='$dcp',image='$final_file' WHERE id = '$id'";
     }
 
     $res = db::query($query);
@@ -238,10 +238,37 @@ if (isset($_GET['del_insurance_quote'])) {
     echo "<script>location='insurance_quote.php?status=1'</script>";
 }
 
+//add category
+if(isset($_POST['add_category'])){
+    $name=$db->real_escape_string($_POST['name']);
+ $query_insert="INSERT INTO categories (`name`) VALUES ('$name')";
+ db::insertRecord($query_insert);
+ echo "<script>location='categories.php'</script>";
+}
+
+//update category
+if(isset($_POST['update_category'])){
+    $name=$db->real_escape_string($_POST['name']);
+    $id=$_POST['id'];
+ $query_insert="UPDATE categories SET name='$name' WHERE id='$id'";
+
+ db::query($query_insert);
+ echo "<script>location='categories.php'</script>";
+}
+
+//delete category
+if(isset($_GET['delete_category'])){
+    $id=$_GET['delete_category'];
+    $sql="DELETE FROM categories WHERE id='$id'";
+    db::query($sql);
+     echo "<script>location='categories.php'</script>";
+
+}
+
 // add_testemonail
 if (isset($_POST['add_testemonail'])) {
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
     $file_loc = $_FILES['image']['tmp_name'];
@@ -252,7 +279,7 @@ if (isset($_POST['add_testemonail'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO testemonail (`heading`,`description`,`image`) VALUES ('$heading','$description','$final_file')";
+    $sql = "INSERT INTO testemonail (`heading`,`dcp`,`image`) VALUES ('$heading','$dcp','$final_file')";
     db::insertRecord($sql);
     echo "<script>location='testeminial.php'</script>";
 }
@@ -261,10 +288,10 @@ if (isset($_POST['add_testemonail'])) {
 if (isset($_POST['update_testemonail'])) {
     $id = $_POST['id'];
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE testemonail SET heading='$heading', description='$description' WHERE id = '$id'";
+        $query = "UPDATE testemonail SET heading='$heading', dcp='$dcp' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -275,7 +302,7 @@ if (isset($_POST['update_testemonail'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE testemonail SET heading='$heading',description='$description',image='$final_file' WHERE id = '$id'";
+        $query = "UPDATE testemonail SET heading='$heading',dcp='$dcp',image='$final_file' WHERE id = '$id'";
     }
 
     $res = db::query($query);
@@ -346,7 +373,7 @@ if (isset($_GET['del_brand'])) {
 // add_about
 if (isset($_POST['add_about'])) {
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
     $file_loc = $_FILES['image']['tmp_name'];
@@ -357,7 +384,7 @@ if (isset($_POST['add_about'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO about (`heading`,`description`) VALUES ('$heading','$description')";
+    $sql = "INSERT INTO about (`heading`,`dcp`) VALUES ('$heading','$dcp')";
     db::insertRecord($sql);
     echo "<script>location='about.php'</script>";
 }
@@ -366,10 +393,10 @@ if (isset($_POST['add_about'])) {
 if (isset($_POST['update_about'])) {
     $id = $_POST['id'];
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE about SET heading='$heading', description='$description' WHERE id = '$id'";
+        $query = "UPDATE about SET heading='$heading', dcp='$dcp' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -380,7 +407,7 @@ if (isset($_POST['update_about'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE about SET heading='$heading',description='$description' WHERE id = '$id'";
+        $query = "UPDATE about SET heading='$heading',dcp='$dcp' WHERE id = '$id'";
     }
 
     $res = db::query($query);
@@ -400,8 +427,8 @@ if (isset($_GET['del_about'])) {
 
 // add_post_quote
 if (isset($_POST['add_post_quote'])) {
-    $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $heading = $db->real_escape_string($_POST['heading']);
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
     $file_loc = $_FILES['image']['tmp_name'];
@@ -412,7 +439,7 @@ if (isset($_POST['add_post_quote'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO post_quote (`heading`,`description`) VALUES ('$heading','$description')";
+    $sql = "INSERT INTO post_quote (`heading`,`dcp`) VALUES ('$heading','$dcp')";
     db::insertRecord($sql);
     echo "<script>location='post_quote.php'</script>";
 }
@@ -420,11 +447,11 @@ if (isset($_POST['add_post_quote'])) {
 //update_post_quote
 if (isset($_POST['update_post_quote'])) {
     $id = $_POST['id'];
-    $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $heading = $db->real_escape_string($_POST['heading']);
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE post_quote SET heading='$heading', description='$description' WHERE id = '$id'";
+        $query = "UPDATE post_quote SET heading='$heading', dcp='$dcp' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -435,7 +462,7 @@ if (isset($_POST['update_post_quote'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE post_quote SET heading='$heading',description='$description' WHERE id = '$id'";
+        $query = "UPDATE post_quote SET heading='$heading',dcp='$dcp' WHERE id = '$id'";
     }
 
     $res = db::query($query);
@@ -456,7 +483,7 @@ if (isset($_GET['del_post_quote'])) {
 // add_get_job
 if (isset($_POST['add_get_job'])) {
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
     $file_loc = $_FILES['image']['tmp_name'];
@@ -467,7 +494,7 @@ if (isset($_POST['add_get_job'])) {
     $final_file = str_replace(' ', '-', $new_file_name);
     $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-    $sql = "INSERT INTO get_job (`heading`,`description`) VALUES ('$heading','$description')";
+    $sql = "INSERT INTO get_job (`heading`,`dcp`) VALUES ('$heading','$dcp')";
     db::insertRecord($sql);
     echo "<script>location='get_job.php'</script>";
 }
@@ -476,10 +503,10 @@ if (isset($_POST['add_get_job'])) {
 if (isset($_POST['update_get_job'])) {
     $id = $_POST['id'];
     $heading = $_POST['heading'];
-    $description = $_POST['description'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
 
     if ($_FILES['image']['name'] == "") {
-        $query = "UPDATE get_job SET heading='$heading', description='$description' WHERE id = '$id'";
+        $query = "UPDATE get_job SET heading='$heading', dcp='$dcp' WHERE id = '$id'";
     } else {
         $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
         $file_loc = $_FILES['image']['tmp_name'];
@@ -490,7 +517,7 @@ if (isset($_POST['update_get_job'])) {
         $final_file = str_replace(' ', '-', $new_file_name);
         $a = move_uploaded_file($file_loc, $folder . $final_file);
 
-        $query = "UPDATE get_job SET heading='$heading',description='$description' WHERE id = '$id'";
+        $query = "UPDATE get_job SET heading='$heading',dcp='$dcp' WHERE id = '$id'";
     }
 
     $res = db::query($query);
@@ -516,5 +543,62 @@ if (isset($_GET['del_contact'])) {
     $res = db::query($del_query);
 
     echo "<script>location='contact.php?status=1'</script>";
+}
+
+
+// add_subscription
+if (isset($_POST['add_subscription'])) {
+    $heading = $_POST['heading'];
+    $price = $_POST['price'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
+
+    $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
+    $file_loc = $_FILES['image']['tmp_name'];
+    $file_size = $_FILES['image']['size'];
+    $file_type = $_FILES['image']['type'];
+    $folder = "uploads/";
+    $new_file_name = strtolower($file);
+    $final_file = str_replace(' ', '-', $new_file_name);
+    $a = move_uploaded_file($file_loc, $folder . $final_file);
+
+    $sql = "INSERT INTO subscription (`heading`,`dcp`,`image`, `price`) VALUES ('$heading','$dcp','$final_file', '$price')";
+    db::insertRecord($sql);
+    echo "<script>location='subscription.php'</script>";
+}
+
+//update_subscription
+if (isset($_POST['update_subscription'])) {
+    $id = $_POST['id'];
+    $heading = $_POST['heading'];
+    $dcp = $db->real_escape_string($_POST['dcp']);
+
+    if ($_FILES['image']['name'] == "") {
+        $query = "UPDATE subscription SET heading='$heading', dcp='$dcp', price='$price' WHERE id = '$id'";
+    } else {
+        $file = rand(1000, 100000) . "-" . $_FILES['image']['name'];
+        $file_loc = $_FILES['image']['tmp_name'];
+        $file_size = $_FILES['image']['size'];
+        $file_type = $_FILES['image']['type'];
+        $folder = "uploads/";
+        $new_file_name = strtolower($file);
+        $final_file = str_replace(' ', '-', $new_file_name);
+        $a = move_uploaded_file($file_loc, $folder . $final_file);
+
+        $query = "UPDATE subscription SET heading='$heading',dcp='$dcp',image='$final_file', price='$price' WHERE id = '$id'";
+    }
+
+    $res = db::query($query);
+
+    echo "<script>location='subscription.php?status=1'</script>";
+}
+
+//del_subscription
+if (isset($_GET['del_subscription'])) {
+    $id = $_GET['del_subscription'];
+
+    $del_query = "DELETE FROM subscription WHERE id='$id'";
+    $res = db::query($del_query);
+
+    echo "<script>location='subscription.php?status=1'</script>";
 }
 ?>

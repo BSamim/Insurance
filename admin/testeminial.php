@@ -8,7 +8,7 @@ include("sidebar.php");
 $query = "SELECT * FROM testemonail";
 $testeminails = db::getRecords($query);
 ?>
-
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <html>
 <head>
 	<style>
@@ -59,7 +59,7 @@ $testeminails = db::getRecords($query);
 		<div class="page-header-content header-elements-md-inline">
 			<div class="page-title d-flex">
 				<a href="dashboard.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>Admin Pannel</a>
-				<span class="breadcrumb-item active">Insurense</span>
+				<span class="breadcrumb-item active">Testimonials</span>
 			</div>
 
 			<div class="header-elements d-none">
@@ -80,7 +80,7 @@ $testeminails = db::getRecords($query);
 
 			</div>
 			<div class="col-md-6 mb-4 text-right ">
-				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Insurense  </button>
+				<button style="    margin-right: 20px;" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal">Add Testimonial  </button>
 			</div>
 			<div class="col-xl-12">
 				<div class="card px-4 py-3">
@@ -94,7 +94,7 @@ $testeminails = db::getRecords($query);
 										<img class="card-img-top" src="uploads/<?php echo $testemonail['image']; ?>" alt="Banner img" style="width:100%;height:200px">
 										<div class="card-body p-0 mt-3">
 											<h2 class="card-title mt-2"><?php echo $testemonail['heading']; ?></h2>
-											<p><?php echo $testemonail['description']; ?></p>
+											<p><?php echo $testemonail['dcp']; ?></p>
 											<div class="text-center card_edit_delet">
 												<a class="text-dark" href="#"  data-toggle="modal" data-target="#myModal1<?php echo $testemonail['id']; ?>"><i class="fas fa-pencil-alt"></i></a>
 												<a href="action.php?del_testemonail=<?php echo $testemonail['id']; ?>" class="text-dark ml-4"><i class="fas fa-trash-alt"></i></a>
@@ -113,7 +113,7 @@ $testeminails = db::getRecords($query);
 												<div class="row">
 													<div class="col-md-12">
 														<div class="text">
-															<h4 class="modal-title mb-3">update Banner</h4>
+															<h4 class="modal-title mb-3">Update Testimonials</h4>
 														</div>
 													</div>
 												</div>
@@ -126,7 +126,7 @@ $testeminails = db::getRecords($query);
 
 
 													<h5 >Description</h5>
-													<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"><?php echo $testemonail['description']; ?></textarea>
+													<textarea class="form-control" name="dcp" placeholder="Lorem ipsum" style="height: 130px;"><?php echo $testemonail['dcp']; ?></textarea>
 
 													<h5 class="mt-2" >image</h5>
 													<input class="form-control" type="file" name="image" placeholder="Enter your Email">
@@ -161,7 +161,7 @@ $testeminails = db::getRecords($query);
 					<div class="row">
 						<div class="col-md-12">
 							<div class="text">
-								<h4 class="modal-title mb-3">Add Insurense</h4>
+								<h4 class="modal-title mb-3">Add Testimonial</h4>
 							</div>
 						</div>
 					</div>
@@ -169,15 +169,15 @@ $testeminails = db::getRecords($query);
 				<div class="modal-body">
 					<form method="POST" action="action.php" enctype="multipart/form-data" >
 						<h5 >Large heading</h5>
-						<input class="form-control" type="text" name="heading" placeholder="Enter your name">
+						<input class="form-control" required type="text" name="heading" placeholder="Enter your name">
 
 						<h5 >Description</h5>
-						<textarea class="form-control" name="description" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
+						<textarea class="form-control" required name="dcp" placeholder="Lorem ipsum" style="height: 130px;"></textarea>
 
 						<h5 class="mt-2" >image</h5>
 						<input class="form-control" type="file" name="image" placeholder="Enter your Email">
 
-						<button type="submit" name="add_testemonail" class="btn btn-success text-center ml-3 mt-3">Submit</button>
+						<button type="submit" required name="add_testemonail" class="btn btn-success text-center ml-3 mt-3">Submit</button>
 					</form>
 				</div>
 			</div>
@@ -194,6 +194,10 @@ $testeminails = db::getRecords($query);
 		function editit(){
 			return(confirm("Do you want to edit?"));
 		}
+
+// 		CKEDITOR.replace( 'dcp' );
+// 		CKEDITOR.replace( 'dcp1' );
+// 		CKEDITOR.replace( 'dcp2' );
 	</script>
 
 	<?php
